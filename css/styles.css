@@ -1,0 +1,62 @@
+html {
+	height: 100%;
+	background-image: url(http://wallpoper.com/images/00/24/34/01/flags-italy_00243401.jpg);
+	background-size: cover;
+}
+
+.title{
+
+	text-align:center;
+}
+.container{
+  margin:0 auto;
+  position: relative;
+  height: 100%;
+  width: auto;
+  border: 3px solid blue;
+}
+
+#white{
+
+  position: absolute;
+  margin: 0 33%;
+  height: 100%;
+  width: 33.5%;
+  border: 3px solid brown;
+}
+
+#board{
+
+  background-color: black;
+  margin: 8%;
+  height: 65%;
+  width: 80%;
+  border: 3px solid blue;
+}
+
+.square{
+	float:left;
+	box-sizing: border-box;
+	height: 33%;
+	background-color: white;
+	width: 33%;
+	border: 5px solid black;
+}
+
+#green{
+ 
+  position: absolute;
+  margin: 0 66% 0 0 ;
+  height: 100%;
+  width: 33%;
+  border: 3px solid red;
+}
+
+#red{
+  
+  position: absolute;
+  margin: 0 0 0 66%;
+  height: 100%;
+  width: 34%;
+  border: 3px solid lime;	
+}
