@@ -7,6 +7,18 @@ html {
 .title{
 
 	text-align:center;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  font-family: 'Meddon', cursive;
+
+}
+h3{
+  text-align:center;
+  margin: 0 auto;
+  padding: 0;
+  border:0;
+  font-family: 'Open Sans', sans-serif;
 }
 .container{
   margin:0 auto;
@@ -41,6 +53,7 @@ html {
 	background-color: white;
 	width: 33%;
 	border: 5px solid black;
+  text-align: center;
 }
 
 #green{
@@ -52,6 +65,51 @@ html {
   border: 3px solid red;
 }
 
+#instruct{
+  position: absolute;
+  margin: 8% 18% 9% 13%;
+  border: 3px solid black;
+  height: 70%;
+  width: 70%;
+  background-color: #3B5323;
+  border-radius: 8px;
+}
+
+#instructeng{
+  position: absolute;
+  margin: 8% 18% 9% 13%;
+  border: 3px solid black;
+  height: 70%;
+  width: 70%;
+  background-color: #3B5323;
+  border-radius: 8px;
+  display: none;
+}
+
+#english{
+  margin:0;
+  padding:0;
+  font-family: 'Open Sans', sans-serif;
+  color: #009ACD;
+  text-align: justify;
+}
+
+#headins{
+  text-align: center;
+  margin:0;
+  padding:5px 0 0 0;
+  font-family: 'Open Sans', sans-serif;
+  color: #009ACD;
+}
+
+#spanish{
+  margin:0;
+  padding:0;
+  font-family: 'Open Sans', sans-serif;
+  color: #009ACD;
+  text-align: justify;
+}
+
 #red{
   
   position: absolute;
@@ -60,3 +118,36 @@ html {
   width: 34%;
   border: 3px solid lime;	
 }
+
+#p1counter{
+  position:absolute;
+  margin: 8% 18% 9% 13%;
+  border: 3px solid black;
+  height: 35%;
+  width: 70%;
+  background-color: #3B5323;
+  border-radius: 8px;
+ 
+}
+
+#p2counter{
+  position:absolute;
+  margin: 38% 18% 0% 13%;
+  border: 3px solid black;
+  height: 35%;
+  width: 70%;
+  background-color: #yellow;
+  border-radius: 8px;
+ 
+
+/*
+#buttons{ 
+  position:absolute;
+  margin: 8% 18% 9% 13%;
+  border: 3px solid black;
+  height: 35%;
+  width: 70%;
+  background-color: #3B5323;
+  border-radius: 8px;
+  display: none; 
+}*/
