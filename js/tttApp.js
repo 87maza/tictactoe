@@ -2,9 +2,23 @@ angular.module('tttApp')
 	.controller('Repeater',Repeater);
 
 //object constructor
-Repeater.$inject = ['$firebaseObject'];
+Repeater.$inject = ['$firebaseObject', '$scope'];
 
-function Repeater($scope){
+function Repeater($firebaseObject, $scope){
+// var ref = new Firebase('https://martintttapp.firebaseio.com/gameBoard');
+// $scope.gameBoard = $firebaseObject(ref);
+// // ref.set({
+//   //$scope.gameBoard.boxes = 
+//   "boxes":[{"status": null},{"status": null}, {"status": null},
+//   {"status": null},{"status": null},{"status": null},
+//   {"status": null},{"status": null},{"status": null}];
+//  // $scope.gameBoard.$save();
+// //});
+
+var ref = new Firebase('https://martintttapp.firebaseio.com');
+$firebaseObject(ref).$bindTo($scope, "game");
+
+  
   var play1 = 1;
   var play2 = -1;
   var playTurn=1;
@@ -14,30 +28,20 @@ function Repeater($scope){
   $scope.symbols = {
     "1" : "X",
     "-1": "O"
-};
-	$scope.boxes = [{status: null},{status: null}, {status: null},
-	{status: null},{status: null},{status: null},
-	{status: null},{status: null},{status: null}];
+  };
 
-   $scope.markSquare = function(index){
-   		//markSquare function will mark the proper index with player's value, either 1 or -1
-   		if(($scope.boxes[index].status === null) && !gameOver){
-            //if statment above will allow null boxes to be occupied with either players' value
+   $scope.markSquare = function(square){
+      if(!$scope.game) return;
+      //markSquare function will mark the proper index with player's value, either 1 or -1
+      var sqVal = $scope.game.board[square];
+      if(sqVal){return;}
 
-            //if statement below will initiate alternating turns
-               $scope.boxes[index].status = playTurn;
-   				if (playTurn ===1){
-   					playTurn = -1;
-            $scope.getWinner();
-   				} else {
-            playTurn=1;
-            $scope.getWinner();
-          }
-      };
-    }
+      if(gameOver)return;
+      $scope.game.board[square] = ($scope.game.turn === 1) ? 1 : -1;
+      $scope.game.turn *= -1;
+      $scope.getWinner();
+    };
 
-   			//else statment intiates continuous switch until all square are filled
-   	
     $scope.winningCombos = [
     //winning combos in array of arrays, needs a nested for loop for a call
     [0,1,2],
@@ -50,8 +54,11 @@ function Repeater($scope){
     [2,4,6]
     ];
 
- $scope.getWinner = function(index){
+ $scope.getWinner = function(){
+
+
     var wc = $scope.winningCombos;
+    console.log("length of winning combos: " + wc.length);
     var total = 0;
 
     for(var i = 0; i < 8; i ++){
@@ -64,9 +71,9 @@ function Repeater($scope){
           
           var windex = wc[i][j]; // (i = 2, j = 2) // index = 7 // $scope.boxes[index]
           
-          total += $scope.boxes[windex].status;
+          total += $scope.game.board[windex];
           // total += $scope.boxes[$scope.winningCombos[i][j]].status
-          
+         // console.log($scope.game.board[windex]);
       }
       if (total === 3){
           $scope.p1Wins += 1;
@@ -84,20 +91,48 @@ function Repeater($scope){
       }
       total = 0; //total sets wins to zero, no double counts  
     }
-  }
+  };
+
+
+
   $scope.clearBoard = function(){
-     $scope.boxes = [{status: null},{status: null}, {status: null},
-      {status: null},{status: null},{status: null},
-      {status: null},{status: null},{status: null}];
+     $scope.game.board = [0,0,0,0,0,0,0,0,0];
+     console.log($scope.game)
       gameOver = false;
-  }
+  };
+
   $scope.clearWins = function(){
     $scope.p1Wins = 0;
     $scope.p2Wins = 0;
-  }
+  };
   // $scope.winCount = function(){
   //   if($scope.p1win)
   // }
+  $scope.getSymbol = function(square){
+    if(!$scope.game) return;
+    var sqVal = $scope.game.board[square];
+    if(sqVal){ 
+      return (sqVal>0) ? "X" : "O";
+    }
+  };
+  function connect(){
+    $scope.game.p1Connect;
+    $scope.game.p2connect;
+    $scope.game.playVal;
+
+   if ($scope.game.p1Connect === true){
+      if($scope.game.p2connect === true){
+          console.log ("please wait for the next game");
+        }else {
+          p2connect = true;
+          playVal = -1;
+        }
+   }
+   else{
+        p1connect = true;
+         playVal = 1;
+    }
+  }
 }
 
 function languages(instruct){
