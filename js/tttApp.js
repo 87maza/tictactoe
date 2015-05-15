@@ -36,10 +36,12 @@ $firebaseObject(ref).$bindTo($scope, "game");
       var sqVal = $scope.game.board[square];
       if(sqVal){return;}
 
-      if(gameOver)return;
+      if(gameOver){return;}
+
       $scope.game.board[square] = ($scope.game.turn === 1) ? 1 : -1;
       $scope.game.turn *= -1;
       $scope.getWinner();
+      
     };
 
     $scope.winningCombos = [
@@ -115,24 +117,23 @@ $firebaseObject(ref).$bindTo($scope, "game");
       return (sqVal>0) ? "X" : "O";
     }
   };
-  function connect(){
-    $scope.game.p1Connect;
-    $scope.game.p2connect;
-    $scope.game.playVal;
+  // function connect(){
+  //   $scope.game.p1Connect;
+  //   $scope.game.p2connect;
 
-   if ($scope.game.p1Connect === true){
-      if($scope.game.p2connect === true){
-          console.log ("please wait for the next game");
-        }else {
-          p2connect = true;
-          playVal = -1;
-        }
-   }
-   else{
-        p1connect = true;
-         playVal = 1;
-    }
-  }
+  //  if ($scope.game.p1Connect === true){
+  //     if($scope.game.p2connect === true){
+  //         console.log ("please wait for the next game");
+  //       }else {
+  //         p2connect = true;
+  //         playVal = -1;
+  //       }
+  //  }
+  //  else{
+  //       p1connect = true;
+  //        playVal = 1;
+  //   }
+  // }
 }
 
 function languages(instruct){
@@ -145,7 +146,7 @@ var f = document.getElementById("instructeng");
   else{
     
        e.style.display = 'block';
-    f.style.display = 'none';
+       f.style.display = 'none';
     }
 }
 
