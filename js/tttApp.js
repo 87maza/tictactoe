@@ -18,9 +18,11 @@ function Repeater($firebaseObject, $scope){
 var ref = new Firebase('https://martintttapp.firebaseio.com');
 $firebaseObject(ref).$bindTo($scope, "game");
 
+
+  var player;
   
-  var play1 = 1;
-  var play2 = -1;
+  var play1 = "X Team";
+  var play2 = "O Team";
   var playTurn=1;
   var gameOver = false;
   $scope.p1Wins = 0;
@@ -31,16 +33,32 @@ $firebaseObject(ref).$bindTo($scope, "game");
   };
 
    $scope.markSquare = function(square){
-      if(!$scope.game) return;
+      
+      if(!$scope.game) {return;}
+     
+      if($scope.game.turn != player){
+       
+        return;
+      }
       //markSquare function will mark the proper index with player's value, either 1 or -1
-      var sqVal = $scope.game.board[square];
-      if(sqVal){return;}
+      // var sqVal = $scope.game.board[square];
+      // if(sqVal){return;}
 
       if(gameOver){return;}
+    
+      // $scope.game.board[square] =  1 : -1;
 
-      $scope.game.board[square] = ($scope.game.turn === 1) ? 1 : -1;
+      // if($scope.game.turn === player){
+      //   console.log(player);
+      //   if (player = 1) {
+      //     $scope.game.board[square] = 1;
+      //   } else if (player = -1) {
+      $scope.game.board[square] = $scope.game.turn;
+        
       $scope.game.turn *= -1;
       $scope.getWinner();
+      //} 
+
       
     };
 
@@ -101,11 +119,14 @@ $firebaseObject(ref).$bindTo($scope, "game");
      $scope.game.board = [0,0,0,0,0,0,0,0,0];
      console.log($scope.game)
       gameOver = false;
+      $scope.game.p1Connect = false;
+    $scope.game.p2Connect = false;
   };
 
   $scope.clearWins = function(){
     $scope.p1Wins = 0;
     $scope.p2Wins = 0;
+    
   };
   // $scope.winCount = function(){
   //   if($scope.p1win)
@@ -117,11 +138,15 @@ $firebaseObject(ref).$bindTo($scope, "game");
       return (sqVal>0) ? "X" : "O";
     }
   };
-  // function connect(){
-  //   $scope.game.p1Connect;
+  $scope.connect = function(){
   //   $scope.game.p2connect;
-
-  //  if ($scope.game.p1Connect === true){
+    if ($scope.game.p1Connect === false) {
+      $scope.game.p1Connect = true;     
+      player = 1;
+    } else if ($scope.game.p2Connect === false) {
+      $scope.game.p2Connect=true;
+      player = -1;
+    }
   //     if($scope.game.p2connect === true){
   //         console.log ("please wait for the next game");
   //       }else {
@@ -134,6 +159,7 @@ $firebaseObject(ref).$bindTo($scope, "game");
   //        playVal = 1;
   //   }
   // }
+  }
 }
 
 function languages(instruct){
