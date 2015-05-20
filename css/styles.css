@@ -25,7 +25,7 @@ h3{
   position: relative;
   height: 100%;
   width: auto;
-  border: 3px solid blue;
+  /*border: 3px solid blue;*/
 }
 
 #white{
@@ -34,7 +34,7 @@ h3{
   margin: 0 33%;
   height: 100%;
   width: 33.5%;
-  border: 3px solid brown;
+  /*border: 3px solid brown;*/
 }
 
 #board{
@@ -62,7 +62,7 @@ h3{
   margin: 0 66% 0 0 ;
   height: 100%;
   width: 33%;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 #instruct{
@@ -116,7 +116,7 @@ h3{
   margin: 0 0 0 66%;
   height: 100%;
   width: 34%;
-  border: 3px solid lime;	
+  /*border: 3px solid lime;	*/
 }
 
 #p1counter{
@@ -138,16 +138,21 @@ h3{
   width: 70%;
   background-color: #yellow;
   border-radius: 8px;
- 
+ }
 
-/*
-#buttons{ 
-  position:absolute;
-  margin: 8% 18% 9% 13%;
-  border: 3px solid black;
-  height: 35%;
-  width: 70%;
-  background-color: #3B5323;
-  border-radius: 8px;
-  display: none; 
-}*/
+button{ 
+float: left;
+position: relative;
+top: 0;
+cursor: pointer;
+width: 120px;
+height: 20px;
+background: #4D0000;
+border-radius: 5px;
+box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+margin: 0 auto;
+color: red;
+text-align: center;
+user-select: none;
+transition: all 0.2s ease;
+}
